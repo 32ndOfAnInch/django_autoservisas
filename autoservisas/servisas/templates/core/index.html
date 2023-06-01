@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %} welcome to {{block.super}} {% endblock title %}
+{% block content %}
+<h1>Rajono autoservisas</h1>
+<p>Sveiki atvykę į automobiliu pragara!</p>
+<p>Šiuo metu turime:</p>
+<ul>
+  <li><strong>Paslaugu kiekis:</strong> {{ num_paslaugos }}</li>
+  <li><strong>Uzsakymu kiekis:</strong> {{ num_uzsakymai }}</li>
+  <li><strong>Automobiliu:</strong> {{ num_automobiliai }}</li>
+</ul>
+{% endblock content %}

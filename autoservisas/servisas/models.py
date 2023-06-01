@@ -27,7 +27,7 @@ class Automobilis(models.Model):
     klientas = models.CharField(_('klientas'), max_length=50, db_index=True)
     automobilio_modelis = models.ForeignKey(
         AutomobilioModelis, 
-        verbose_name=_("automobiliomodelis"),
+        verbose_name=_("automobilio modelis"),
         related_name='automobiliai', 
         on_delete=models.CASCADE,
         )
@@ -46,7 +46,7 @@ class Automobilis(models.Model):
 
 class Uzsakymas(models.Model):
 
-    data = models.DateField(_(''), auto_now_add=True, db_index=True)
+    data = models.DateField(_('data'), auto_now_add=True, db_index=True)
     suma = models.DecimalField(_('suma'), max_digits=18, decimal_places=2, null=True, db_index=True)
     automobilis = models.ForeignKey(
         Automobilis,
