@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} Order Details | {{ block.super }}{% endblock title %}
+{% block content %}
+<h1>Order No: {{ order.id }}</h1>
+<strong>Order Details:</strong>
+<ul>
+    <li><strong>Date: </strong>{{ order.date }}</li>
+    <li><strong>Car: </strong>{{ order.car.model }}</li>
+    <li><strong>Owner: </strong>{{ order.car.owner }}</li>
+</ul>
+
+{% if order.order_entries.count > 0 %}
+
+    <strong>-----------</strong>
+    <ul>
+        {% for entry in order.order_entries.all %}
+            <li>
+            <strong>Service:</strong> {{ entry.service }}
+            </li>
+            <li>
+            <strong>Quantity:</strong> {{ entry.quantity }}
+            </li>
+            <li>
+            <strong>Price:</strong> {{ entry.price }}
+            </li>
+            <li>
+            <strong>Status:</strong> {{ entry.status }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

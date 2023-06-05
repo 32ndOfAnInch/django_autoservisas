@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} cars {{ block.super }}'e {% endblock title %}
+{% block content %}
+<h1>Cars currently in service:<h1>
+{% if car_list %}
+{% with car_list as page_obj %}
+    {% include "includes/paginator_nav.html" %}
+{% endwith %}
+    <ul class="car-list">
+        {% for car in car_list %}
+            <li>
+                <a href="{% url 'car_details' car.pk %}">
+                    {% if car.picture %}
+                        <img class="car-picture" src="{{ car.picture.url }}">
+                    {% else %}
+                        <img class="car-picture" src="{% static 'library/img/default_car.jpg' %}">
+                    {% endif %}
+                    {{ car.model }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% with car_list as page_obj %}
+    {% include "includes/paginator_pages.html" %}
+{% endwith %}
+{% else %}
+    <p>No cars found</p>
+{% endif %}
+{% endblock content %}

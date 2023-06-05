@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %} {{ block.super }} {% endblock title %}
+{% block content %}
+<h1>Orders<h1>
+<form action="" method="get">
+    <input name="query" type="text" value="{{ request.GET.query }}">
+    <button type="submit"></button>
+    {% if request.GET.query %}<a href="{{ request.path }}">clear</a>{% endif %}
+</form>
+    {% if orders %}
+    {% include  "includes/paginator_nav.html" %}
+    <ul>
+        {% for order in orders %}
+            <li><a href="{% url 'order_detail' order.pk %}">{{ order.car.owner }}</a></li>
+        {% endfor %}
+    </ul>
+    {% include  "includes/paginator_pages.html" %}
+    {% else %}
+    <p>No orders found</p>
+    {% endif %}
+{% endblock content %}

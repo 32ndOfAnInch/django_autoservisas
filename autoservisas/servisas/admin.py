@@ -1,28 +1,28 @@
 from django.contrib import admin
 from . import models
 
-class UzsakymoEilutesInline(admin.TabularInline):
-    model = models.UzsakymoEilute
+class OrderEntryInline(admin.TabularInline):
+    model = models.OrderEntry
     extra = 0
 
 
-class UzsakymasAdmin(admin.ModelAdmin):
-    list_display = ("automobilis", "data")
-    inlines = [UzsakymoEilutesInline]
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ("car", "date")
+    inlines = [OrderEntryInline]
 
 
-class AutomobilisAdmin(admin.ModelAdmin):
-    list_display = ('klientas', 'automobilio_modelis', 'valstybinis_nr', 'vin_kodas')
-    list_filter = ('klientas', 'automobilio_modelis')
-    search_fields = ('valstybinis_nr', 'vin_kodas')
+class CarAdmin(admin.ModelAdmin):
+    list_display = ('owner', 'model', 'license_plate', 'vin_code')
+    list_filter = ('owner', 'model')
+    search_fields = ('license_plate', 'vin_code')
 
 
-class PaslaugaAdmin(admin.ModelAdmin):
-    list_display = ('pavadinimas', 'kaina')
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price')
 
 
-class UzsakymoEiluteAdmin(admin.ModelAdmin):
-    list_display = ('pavadinimas', 'kaina')
+class OrderEntryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price')
 
 
 # class PaslaugosKainaAdmin(admin.ModelAdmin):
@@ -34,8 +34,8 @@ class UzsakymoEiluteAdmin(admin.ModelAdmin):
 
 # admin.site.register(models.Paslaugos_kaina, PaslaugosKainaAdmin)
 
-admin.site.register(models.AutomobilioModelis)
-admin.site.register(models.Automobilis, AutomobilisAdmin)
-admin.site.register(models.Uzsakymas, UzsakymasAdmin)
-admin.site.register(models.Paslauga, PaslaugaAdmin)
-admin.site.register(models.UzsakymoEilute)
+admin.site.register(models.CarModel)
+admin.site.register(models.Car, CarAdmin)
+admin.site.register(models.Order, OrderAdmin)
+admin.site.register(models.Service, ServiceAdmin)
+admin.site.register(models.OrderEntry)

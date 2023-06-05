@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% block title %} welcome to {{block.super}} {% endblock title %}
 {% block content %}
-<h1>Rajono autoservisas</h1>
-<p>Sveiki atvykę į automobiliu pragara!</p>
-<p>Šiuo metu turime:</p>
+<h1>Autoservice</h1>
+<p>Welcome to car's hell! Muhahahaha!!!</p>
+<p>At this time</p>
 <ul>
-  <li><strong>Paslaugu kiekis:</strong> {{ num_paslaugos }}</li>
-  <li><strong>Uzsakymu kiekis:</strong> {{ num_uzsakymai }}</li>
-  <li><strong>Automobiliu:</strong> {{ num_automobiliai }}</li>
+  <li><strong>Services:</strong> {{ num_services }}</li>
+  <li><strong>Completed Orders:</strong> {{ num_completed_orders }}</li>
+  <li><strong>Cars:</strong> {{ num_cars }}</li>
+  <li><strong>You are visiting this page:</strong> {{ num_visits|ordinal }} time</li>
 </ul>
 {% endblock content %}

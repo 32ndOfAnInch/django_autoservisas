@@ -11,13 +11,26 @@
 <body>
     <header>
         <ul class="nav">
-            <li class="logo">&#128663; Rajono AUTOSERVISAS</li>
-            <li>
-                <a href="{% url 'index' %}">Home</a>
+            <li class="logo">&#128663; HELL AUTOSERVICE</li>
+            <li><a href="{% url 'index' %}">Main</a></li>
+            <li><a href="{% url 'car_list' %}">Cars</a></li>
+            <li><a href="{% url 'order_list' %}">Orders</a></li>
+            {% if user.is_authenticated %}
+            <li class="user">
+                &#128100; {{ user.username }}
             </li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+                {% if user.is_staff or user.is_superuser %}
+                    <li><a href="{% url 'admin:index' %}">Admin</a></li>
+                {% endif %}
+            {% endif %}
         </ul>
     </header>
     <main>{% block content %}{% endblock content %}</main>
-    <footer><p>&copy; autoservisas</p></footer>
+    <footer><p>&copy; hell autoservice 2023</p></footer>
 </body>
 </html>
