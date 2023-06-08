@@ -29,4 +29,24 @@
         {% endfor %}
     </ul>
 {% endif %}
-{% endblock %}
+<h2>Reviews</h2>
+{% if user.is_staff or user.is_superuser or user == order.car.customer %}
+    <form method="post" action="{{ request.path }}">
+    <h3>Leave your review</h3>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Post</button>
+    </form>
+{% else %}
+    <p class="box box-info">If you want to post a review, you have to <a href="{% url 'login' %}">login</a> or <a href="{% url 'signup' %}">sing up</a></p>
+{% endif %}
+{% if order.reviews.count > 0 %}
+    <ul>
+        {% for review in order.reviews.all %}
+            <li>{{ review.reviewed_at }} by {{ review.reviewer }}<br>
+                {{ review.content }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock content%}

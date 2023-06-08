@@ -16,12 +16,12 @@
             <li><a href="{% url 'car_list' %}">Cars</a></li>
             <li><a href="{% url 'order_list' %}">Orders</a></li>
             {% if user.is_authenticated %}
-            <li class="user">
-                &#128100; {{ user.username }}
-            </li>
+            <li><a href="{% url 'profile' %}">&#128100; {{ user.get_username }}</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'user_orders' %}">My Orders</a></li>
             {% else %}
-                <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign up</a></li>
             {% endif %}
             {% if user.is_authenticated %}
                 {% if user.is_staff or user.is_superuser %}

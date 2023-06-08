@@ -8,8 +8,11 @@
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
 {{ form.as_p }}
+{% if request.GET.next and '/accounts/' not in request.GET.next %}
+    <input type="hidden" name="next" value="{{ request.GET.next }}">
+{% endif %}
 <p><button type="submit">Log in</button></p>
 </form>
 <p><a href="{% url 'password_reset' %}">forgot password?<a></p>
-{% comment %} <p>If you do not have account, you can <a href="{% url '' %}">sign up</a></p> {% endcomment %}
+<p>If you do not have account, you can <a href="{% url 'signup' %}">sign up</a></p>
 {% endblock content %}

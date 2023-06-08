@@ -24,18 +24,17 @@ class ServiceAdmin(admin.ModelAdmin):
 class OrderEntryAdmin(admin.ModelAdmin):
     list_display = ('name', 'price')
 
+class OrderEntryAdmin(admin.ModelAdmin):
+    list_display = ('order', 'status', 'service')
+    list_filter = ('order', 'status')
+    list_editable = ('status', )
 
-# class PaslaugosKainaAdmin(admin.ModelAdmin):
-#     list_display = ('paslauga', 'automobilis', 'kaina')
-
-
-# class UzsakymoKomentarasAdmin(admin.ModelAdmin):
-#     list_display = ('uzsakymas', 'klientas', 'data', 'komentaras')
-
-# admin.site.register(models.Paslaugos_kaina, PaslaugosKainaAdmin)
+class OrderReviewAdmin(admin.ModelAdmin):
+    list_display = ('reviewed_at', 'order', 'reviewer', 'content')
 
 admin.site.register(models.CarModel)
 admin.site.register(models.Car, CarAdmin)
 admin.site.register(models.Order, OrderAdmin)
 admin.site.register(models.Service, ServiceAdmin)
-admin.site.register(models.OrderEntry)
+admin.site.register(models.OrderEntry, OrderEntryAdmin)
+admin.site.register(models.OrderReview, OrderReviewAdmin)
